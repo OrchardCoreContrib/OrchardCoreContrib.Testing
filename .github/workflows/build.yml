@@ -35,3 +35,4 @@ jobs:
         else
           dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
         fi
+      shell: bash
