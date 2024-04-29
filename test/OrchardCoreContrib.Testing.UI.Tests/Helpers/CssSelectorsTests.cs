@@ -1,10 +1,9 @@
-﻿namespace OrchardCoreContrib.Testing.UI.Helpers.Tests;
+﻿using OrchardCoreContrib.Testing.UI.Tests;
+
+namespace OrchardCoreContrib.Testing.UI.Helpers.Tests;
 
 public class CssSelectorsTests
 {
-    private static readonly string _binFolderPath = Path.GetDirectoryName(typeof(CssSelectorsTests).Assembly.Location);
-    private static readonly string _pagesFolderPath = Path.Combine(_binFolderPath, "Pages");
-
     public static readonly IEnumerable<object[]> CombinatorsData =
     [
         new [] { By.Id("container") },
@@ -36,24 +35,12 @@ public class CssSelectorsTests
     public async Task ShouldFindByCssSelector(string selector)
     {
         // Arrange
-        var playwrightPage = await CreatePlaywrightPageAsync();
-
-        await playwrightPage.GotoAsync(Path.Combine(_pagesFolderPath, "selectors.html"));
-
-        var page = new Page(new PlaywrightPageAccessor(playwrightPage));
+        var page = await PlaywrightPageHelper.GotoAsync("selectors.html");
 
         // Act
         var element = page.FindElement(selector);
 
         // Assert
         Assert.True(element.Visible);
-    }
-
-    private static async Task<Microsoft.Playwright.IPage> CreatePlaywrightPageAsync()
-    {
-        var playwright = await Playwright.CreateAsync();
-        var browser = await playwright.Chromium.LaunchAsync();
-
-        return await browser.NewPageAsync();
     }
 }
