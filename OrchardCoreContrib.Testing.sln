@@ -7,9 +7,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{20F306B8-D63
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{27507B03-7D7C-492D-92A4-FF5812B9D7DB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrchardCoreContrib.Testing.UI", "src\OrchardCoreContrib.Testing.UI\OrchardCoreContrib.Testing.UI.csproj", "{A9E5A40B-78F8-4F02-9E73-C74F395B5BBD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrchardCoreContrib.Testing.UI.Tests", "test\OrchardCoreContrib.Testing.UI.Tests\OrchardCoreContrib.Testing.UI.Tests.csproj", "{985F5AD6-8C18-4E63-A35C-A5673F237A4D}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9E5A40B-78F8-4F02-9E73-C74F395B5BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E5A40B-78F8-4F02-9E73-C74F395B5BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E5A40B-78F8-4F02-9E73-C74F395B5BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E5A40B-78F8-4F02-9E73-C74F395B5BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{985F5AD6-8C18-4E63-A35C-A5673F237A4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{985F5AD6-8C18-4E63-A35C-A5673F237A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{985F5AD6-8C18-4E63-A35C-A5673F237A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{985F5AD6-8C18-4E63-A35C-A5673F237A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A9E5A40B-78F8-4F02-9E73-C74F395B5BBD} = {20F306B8-D63F-4A61-AF6E-64B4E0918E30}
+		{985F5AD6-8C18-4E63-A35C-A5673F237A4D} = {27507B03-7D7C-492D-92A4-FF5812B9D7DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD153137-BF4D-4977-A4D7-4C448D23479A}
