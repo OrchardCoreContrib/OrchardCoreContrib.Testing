@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ ubuntu-latest, windows-latest ]
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -25,9 +25,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.*
+    - name: Restore
+      run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Installing playwright browsers and dependencies
+    - name: Playwright
       run: pwsh test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/net8.0/playwright.ps1 install --with-deps
     - name: Test
       run: dotnet test -c Release --no-build
