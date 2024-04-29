@@ -29,4 +29,4 @@ jobs:
     - name: Install Playwright browsers & dependencies
       run: pwsh test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/net8.0/playwright.ps1 install --with-deps
     - name: Test
-      run: dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
+      run: xvfb-run dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
