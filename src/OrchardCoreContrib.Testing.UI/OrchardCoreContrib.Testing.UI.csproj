@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="build\playwright.ps1" Pack="true" CopyToOutputDirectory="PreserveNewest" />
+	  <None Update="playwright.ps1" Pack="true" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 
 </Project>
