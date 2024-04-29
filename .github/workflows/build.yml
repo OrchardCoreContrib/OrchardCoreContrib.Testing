@@ -25,8 +25,8 @@ jobs:
     - name: Restore
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build -c Release --no-restore
     - name: Playwright
       run: pwsh test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/net8.0/playwright.ps1 install --with-deps
     - name: Test
-      run: dotnet test -c Release --no-build
+      run: dotnet test -c Release --no-restore --verbosity normal
