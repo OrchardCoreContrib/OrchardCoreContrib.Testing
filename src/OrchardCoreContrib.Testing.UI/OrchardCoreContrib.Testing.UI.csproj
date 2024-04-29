@@ -3,6 +3,23 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<IsPackable>true</IsPackable>
+		<VersionPrefix>1.0.0-beta1</VersionPrefix>
+		<Authors>The Orchard Core Contrib Team</Authors>
+		<Company />
+		<Description>Provides an implementation APIs to build E2E tests for Orchard Core applications.</Description>
+		<PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/OrchardCoreContrib/OrchardCoreContrib.Testing/tree/main/src/OrchardCoreContrib.Testing.UI/README.md</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/OrchardCoreContrib/OrchardCoreContrib.Testing</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageTags>Orchard Core, Orchard Core Contrib, Testing, UI Testing, E2E Testing</PackageTags>
+		<PackageReleaseNotes>https://github.com/OrchardCoreContrib/OrchardCoreContrib.Testing/releases</PackageReleaseNotes>
+		<PackageId>OrchardCoreContrib.Testing.UI</PackageId>
+		<PackageIcon>icon.png</PackageIcon>
+		<Product>Orchard Core Contrib UI Testing</Product>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Copyright>2019 Orchard Core Contrib</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,6 +38,7 @@
 
 	<ItemGroup>
 	  <None Update="build\playwright.ps1" Pack="true" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="..\..\images\icon.png" Pack="true" PackagePath="icon.png" />
 	</ItemGroup>
 
 </Project>

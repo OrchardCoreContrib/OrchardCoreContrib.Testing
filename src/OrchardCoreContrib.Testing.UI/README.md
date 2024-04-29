@@ -4,4 +4,4 @@ This project provides an implementation of APIs to build E2E tests for Orchard C
 
 ## NuGet Packages
 
-No packages has been released yet.
+| [`OrchardCoreContrib.Testing.UI`](https://www.nuget.org/packages/OrchardCoreContrib.Testing.UI/1.0.0-beta1) | 1.0.0-beta1 |

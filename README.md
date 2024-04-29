@@ -24,4 +24,4 @@ The `OrchardCoreContrib.Testing` repository consists of the following projects:
 
 | Name | Namespace | NuGet |
 | --- | --- | --- |
-| [Orchard Core Contrib UI Testing APIs](src/OrchardCoreContrib.Testing.UI/README.md) | `OrchardCoreContrib.Testing.UI` ||
+| [Orchard Core Contrib UI Testing APIs](src/OrchardCoreContrib.Testing.UI/README.md) | `OrchardCoreContrib.Testing.UI` | [![NuGet](https://img.shields.io/nuget/v/OrchardCoreContrib.Testing.UI.svg)](https://www.nuget.org/packages/OrchardCoreContrib.Testing.UI) |
