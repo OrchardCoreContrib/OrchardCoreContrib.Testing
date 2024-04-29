@@ -29,6 +29,6 @@ jobs:
     - name: Install Playwright browsers & dependencies
       run: pwsh test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/net8.0/playwright.ps1 install --with-deps
     - name: Run headless test
-      uses: coactions/setup-xvfb@v1
+      uses: coactions/setup-xvfb@v1.0.1
     - name: Test
       run: dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
