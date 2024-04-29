@@ -1,7 +1,4 @@
-﻿using Microsoft.Playwright;
-using OrchardCoreContrib.Testing.UI.Helpers;
-
-namespace OrchardCoreContrib.Testing.UI.Tests.Helpers;
+﻿namespace OrchardCoreContrib.Testing.UI.Helpers.Tests;
 
 public class CssSelectorsTests
 {

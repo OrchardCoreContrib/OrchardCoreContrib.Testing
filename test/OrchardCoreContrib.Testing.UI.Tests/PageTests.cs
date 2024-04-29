@@ -1,6 +1,3 @@
-using Microsoft.Playwright;
-using Moq;
-
 namespace OrchardCoreContrib.Testing.UI.Tests;
 
 public class PageTests

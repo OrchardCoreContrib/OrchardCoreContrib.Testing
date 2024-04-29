@@ -1,5 +1,3 @@
-using Moq;
-
 namespace OrchardCoreContrib.Testing.UI.Tests;
 
 public class BrowserTests

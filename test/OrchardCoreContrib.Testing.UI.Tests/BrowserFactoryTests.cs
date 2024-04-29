@@ -1,5 +1,4 @@
-﻿using Microsoft.Playwright;
-using PlaywrightBrowserType = Microsoft.Playwright.BrowserType;
+﻿using PlaywrightBrowserType = Microsoft.Playwright.BrowserType;
 
 namespace OrchardCoreContrib.Testing.UI.Tests;
 
