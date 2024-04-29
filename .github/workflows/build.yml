@@ -28,7 +28,5 @@ jobs:
       run: dotnet build -c Release --no-restore
     - name: Install Playwright browsers & dependencies
       run: pwsh test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/net8.0/playwright.ps1 install --with-deps
-    - name: Install XVFB
-      uses: GabrielBB/xvfb-action@v1
     - name: Test
       run: dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
