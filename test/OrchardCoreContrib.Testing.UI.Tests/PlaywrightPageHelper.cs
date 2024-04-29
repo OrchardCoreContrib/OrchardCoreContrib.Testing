@@ -15,5 +15,5 @@ internal class PlaywrightPageHelper
     }
 
     private static string GetFullPath(string pageName)
-        => Path.Combine(Environment.CurrentDirectory, "Pages", pageName);
+        => new Uri(Path.Combine(Environment.CurrentDirectory, "Pages", pageName)).AbsoluteUri;
 }
