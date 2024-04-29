@@ -2,9 +2,6 @@ namespace OrchardCoreContrib.Testing.UI.Tests;
 
 public class PageTests
 {
-    private static readonly string _binFolderPath = Path.GetDirectoryName(typeof(PageTests).Assembly.Location);
-    private static readonly string _pagesFolderPath = Path.Combine(_binFolderPath, "Pages");
-
     [Fact]
     public void ShouldCreatePage()
     {
@@ -66,11 +63,7 @@ public class PageTests
     public async Task ShouldClickAnElement()
     {
         // Arrange
-        var playwrightPage = await CreatePlaywrightPageAsync();
-
-        await playwrightPage.GotoAsync(Path.Combine(_pagesFolderPath, "index.html"));
-
-        var page = new Page(new PlaywrightPageAccessor(playwrightPage));
+        var page = await PlaywrightPageHelper.GotoAsync("index.html");
 
         // Act
         await page.ClickAsync("button");
@@ -86,11 +79,7 @@ public class PageTests
         // Arrange
         var screenshotFilePath = "screenshot.jpg";
 
-        var playwrightPage = await CreatePlaywrightPageAsync();
-
-        await playwrightPage.GotoAsync(Path.Combine(_pagesFolderPath, "index.html"));
-
-        var page = new Page(new PlaywrightPageAccessor(playwrightPage));
+        var page = await PlaywrightPageHelper.GotoAsync("index.html");
 
         // Act
         await page.ScreenShotAsync(screenshotFilePath);
@@ -98,13 +87,5 @@ public class PageTests
         // Assert
         Assert.True(File.Exists(screenshotFilePath));
         File.Delete(screenshotFilePath);
-    }
-
-    private static async Task<Microsoft.Playwright.IPage> CreatePlaywrightPageAsync()
-    {
-        var playwright = await Playwright.CreateAsync();
-        var browser = await playwright.Chromium.LaunchAsync();
-        
-        return await browser.NewPageAsync();
     }
 }
