@@ -9,11 +9,8 @@ internal class PlaywrightPageHelper
 
         var page = await browser.NewPageAsync();
 
-        await page.GotoAsync(GetFullPath(pageName));
+        await page.GotoAsync(PageHelper.GetFullPath(pageName));
 
         return new Page(new PlaywrightPageAccessor(page));
     }
-
-    private static string GetFullPath(string pageName)
-        => new Uri(Path.Combine(Environment.CurrentDirectory, "Pages", pageName)).AbsoluteUri;
 }
