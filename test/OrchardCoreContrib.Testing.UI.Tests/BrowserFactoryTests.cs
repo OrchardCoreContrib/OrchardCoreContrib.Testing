@@ -4,26 +4,28 @@ namespace OrchardCoreContrib.Testing.UI.Tests;
 
 public class BrowserFactoryTests
 {
-    [InlineData(BrowserType.Chrome, PlaywrightBrowserType.Chromium, false)]
-    [InlineData(BrowserType.Edge, PlaywrightBrowserType.Chromium, false)]
-    [InlineData(BrowserType.Firefox, PlaywrightBrowserType.Firefox, false)]
-    [InlineData(BrowserType.Chrome, PlaywrightBrowserType.Chromium, true)]
-    [InlineData(BrowserType.Edge, PlaywrightBrowserType.Chromium, true)]
-    [InlineData(BrowserType.Firefox, PlaywrightBrowserType.Firefox, true)]
+    [InlineData(BrowserType.Chrome, PlaywrightBrowserType.Chromium)]
+    [InlineData(BrowserType.Edge, PlaywrightBrowserType.Chromium)]
+    [InlineData(BrowserType.Firefox, PlaywrightBrowserType.Firefox)]
     [Theory]
-    public async Task CreateBrowser(BrowserType browserType, string playwrightBrowserType, bool headless)
+    public async Task CreateBrowser(BrowserType browserType, string playwrightBrowserType)
     {
         // Arrange
         var playwright = await Playwright.CreateAsync();
 
+        var testOptions = new UITestOptions
+        {
+            BrowserType = browserType
+        };
+
         // Act
-        var browser = await BrowserFactory.CreateAsync(playwright, browserType, headless, delay: 0);
+        var browser = await BrowserFactory.CreateAsync(playwright, testOptions);
+        browser.Type = browserType;
 
         // Assert
         Assert.NotNull(browser);
         Assert.Equal(browserType, browser.Type);
         Assert.Equal(playwrightBrowserType, browser.InnerBrowser.BrowserType.Name);
-        Assert.Equal(headless, browser.Headless);
     }
 
     [Fact]
@@ -31,11 +33,15 @@ public class BrowserFactoryTests
     {
         // Arrange
         var playwright = await Playwright.CreateAsync();
+        var testOptions = new UITestOptions
+        {
+            BrowserType = BrowserType.NotSet
+        };
 
         // Act & Assert
         await Assert.ThrowsAsync<NotSupportedException>(async () =>
         {
-            await BrowserFactory.CreateAsync(playwright, BrowserType.NotSet, headless: true, delay: 0);
+            await BrowserFactory.CreateAsync(playwright, testOptions);
         });
     }
 }

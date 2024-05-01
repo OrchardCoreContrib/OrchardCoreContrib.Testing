@@ -13,4 +13,6 @@ public abstract class UITestBase<TStartup>(WebApplicationFactoryFixture<TStartup
     /// Gets the base URL used for the tested website.
     /// </summary>
     public string BaseUrl => fixture.ServerAddress;
+
+    public UITestOptions Options { get; protected set; }
 }

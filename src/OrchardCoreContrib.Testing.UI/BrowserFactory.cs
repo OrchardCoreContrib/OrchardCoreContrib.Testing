@@ -16,20 +16,29 @@ public static class BrowserFactory
     /// Creates a new instance of <see cref="IBrowser"/> with a given browser type.
     /// </summary>
     /// <param name="playwright">The <see cref="IPlaywright"/>.</param>
-    /// <param name="browserType">The browser type in which <see cref="IBrowser"/> will be created.</param>
-    /// <param name="headless">Whether the browser runs in headless mode or not.</param>
+    /// <param name="testOptions">The <see cref="UITestOptions"/>.</param>
     /// <returns>An instance of <see cref="IBrowser"/>.</returns>
     /// <exception cref="NotSupportedException"></exception>
-    public static async Task<IBrowser> CreateAsync(IPlaywright playwright, BrowserType browserType, bool headless, int delay)
+    public static async Task<IBrowser> CreateAsync(IPlaywright playwright, UITestOptions testOptions)
     {
-        var browser = browserType switch
+        var browser = testOptions.BrowserType switch
         {
-            BrowserType.Edge => _edgeBrowser ?? await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Channel = "msedge", Headless = headless }),
-            BrowserType.Chrome => _chromeBrowser ?? await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = headless }),
-            BrowserType.Firefox => _fireFoxBrowser ?? await playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions { Headless = headless }),
+            BrowserType.Edge => _edgeBrowser ?? await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+            {
+                Channel = "msedge",
+                Headless = testOptions.Headless
+            }),
+            BrowserType.Chrome => _chromeBrowser ?? await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+            {
+                Headless = testOptions.Headless
+            }),
+            BrowserType.Firefox => _fireFoxBrowser ?? await playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions
+            {
+                Headless = testOptions.Headless
+            }),
             _ => throw new NotSupportedException()
         };
 
-        return new Browser(new PlaywrightBrowserAccessor(browser), browserType, headless, delay);
+        return new Browser(new PlaywrightBrowserAccessor(browser)) { Type = testOptions.BrowserType };
     }
 }

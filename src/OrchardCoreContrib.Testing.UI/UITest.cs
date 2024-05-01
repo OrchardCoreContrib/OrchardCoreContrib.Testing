@@ -1,5 +1,4 @@
 ﻿using Microsoft.Playwright;
-using OrchardCoreContrib.Testing.UI.Infrastructure;
 using Xunit;
 
 namespace OrchardCoreContrib.Testing.UI;
@@ -9,7 +8,7 @@ namespace OrchardCoreContrib.Testing.UI;
 /// </summary>
 /// <param name="browserType">The browser type that will be used during the test. Defaults to <see cref="BrowserType.Edge"/>.</param>
 /// <param name="headless">Whether the browser runs in headless mode or not. Defaults to <c>true</c>.</param>
-public class UITest(BrowserType browserType = BrowserType.Edge, bool headless = true, int delay = 0) : IAsyncLifetime
+public class UITest(BrowserType browserType = BrowserType.Edge, bool headless = true) : IAsyncLifetime
 {
     private IPlaywright _playwright;
 
@@ -18,12 +17,20 @@ public class UITest(BrowserType browserType = BrowserType.Edge, bool headless = 
     /// </summary>
     public IBrowser Browser { get; private set; }
 
+    public UITestOptions Options { get; private set; }
+
     /// <inheritdoc/>
     public async Task InitializeAsync()
     {
+        Options = new UITestOptions
+        {
+            BrowserType = browserType,
+            Headless = headless
+        };
+
         _playwright = await Playwright.CreateAsync();
 
-        Browser = await BrowserFactory.CreateAsync(_playwright, browserType, headless, delay);
+        Browser = await BrowserFactory.CreateAsync(_playwright, Options);
     }
 
     /// <inheritdoc/>

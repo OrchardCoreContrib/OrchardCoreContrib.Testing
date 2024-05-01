@@ -11,30 +11,33 @@ namespace OrchardCoreContrib.Testing.UI;
 /// <param name="playwrightBrowserAccessor">The <see cref="IPlaywrightBrowserAccessor"/>.</param>
 /// <param name="type">The <see cref="BrowserType"/>.</param>
 /// <param name="headless">Whether to run browser in headless mode.</param>
-public class Browser(IPlaywrightBrowserAccessor playwrightBrowserAccessor, BrowserType type, bool headless, int delay) : IBrowser
+public class Browser(IPlaywrightBrowserAccessor playwrightBrowserAccessor, int delay) : IBrowser
 {
     /// <inheritdoc/>
     public PlaywrightBrowser InnerBrowser => playwrightBrowserAccessor.PlaywrightBrowser;
 
     /// <inheritdoc/>
-    public bool Headless => headless;
-
-    /// <inheritdoc/>
-    public BrowserType Type => type;
+    public BrowserType Type { get; set; }
 
     /// <inheritdoc/>
     public int Delay => delay;
 
     /// <inheritdoc/>
-    public string Version => InnerBrowser.Version;
+    public string Version { get; set; } = playwrightBrowserAccessor.PlaywrightBrowser.Version;
 
     /// <inheritdoc/>
     public async Task<IPage> OpenPageAsync(string url)
     {
-        var page = await InnerBrowser.NewPageAsync();
+        var playwrightPage = await InnerBrowser.NewPageAsync();
 
-        await page.GotoAsync(url);
+        await playwrightPage.GotoAsync(url);
 
-        return new Page(this, new PlaywrightPageAccessor(page));
+        var page = new Page(new PlaywrightPageAccessor(playwrightPage))
+        {
+            Title = await playwrightPage.TitleAsync(),
+            Content = await playwrightPage.ContentAsync()
+        };
+
+        return page;
     }
 }
