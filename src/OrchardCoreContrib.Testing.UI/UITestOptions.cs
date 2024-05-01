@@ -14,4 +14,9 @@ public class UITestOptions
     /// Gets or sets the browser type to run the test on. Defaults <see cref="BrowserType.Edge"/>.
     /// </summary>
     public BrowserType BrowserType { get; set; } = BrowserType.Edge;
+
+    /// <summary>
+    /// Gets or sets amount of time to wait before executing each event on the page. Defaults <c>0</c>.
+    /// </summary>
+    public int Delay { get; set; } = 0;
 }
