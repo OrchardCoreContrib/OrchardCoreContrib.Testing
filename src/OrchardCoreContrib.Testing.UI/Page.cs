@@ -15,20 +15,33 @@ public class Page(IPlaywrightPageAccessor playwrightPageAccessor) : IPage
     public Microsoft.Playwright.IPage InnerPage => playwrightPageAccessor.PlaywrightPage;
 
     /// <inheritdoc/>
-    public string Title => InnerPage.TitleAsync().GetAwaiter().GetResult();
+    public string Title { get; set; }
 
     /// <inheritdoc/>
-    public string Content => InnerPage.ContentAsync().GetAwaiter().GetResult();
+    public string Content { get; set; }
 
     /// <inheritdoc/>
-    public async Task GoToAsync(string url) => await InnerPage.GotoAsync(url);
+    public async Task GoToAsync(string url)
+    {
+        await InnerPage.GotoAsync(url);
+
+        Title = await InnerPage.TitleAsync();
+        Content = await InnerPage.ContentAsync();
+    }
 
     /// <inheritdoc/>
     public IElement FindElement(string selector)
     {
         var locator = InnerPage.Locator(selector);
+        var element = new Element(locator)
+        {
+            InnerText = locator.InnerTextAsync().GetAwaiter().GetResult(),
+            InnerHtml = locator.InnerHTMLAsync().GetAwaiter().GetResult(),
+            Enabled = locator.IsEnabledAsync().GetAwaiter().GetResult(),
+            Visible = locator.IsVisibleAsync().GetAwaiter().GetResult()
+        };
 
-        return new Element(locator);
+        return element;
     }
 
     /// <inheritdoc/>

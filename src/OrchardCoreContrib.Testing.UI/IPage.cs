@@ -11,14 +11,14 @@ public interface IPage
     public Microsoft.Playwright.IPage InnerPage { get; }
 
     /// <summary>
-    /// Gets the page title.
+    /// Gets or sets the page title.
     /// </summary>
-    public string Title { get; }
+    public string Title { get; set; }
 
     /// <summary>
-    /// Gets the page content in HTML format.
+    /// Gets or sets the page content in HTML format.
     /// </summary>
-    public string Content { get; }
+    public string Content { get; set; }
 
     /// <summary>
     /// Navigates to a given URL.

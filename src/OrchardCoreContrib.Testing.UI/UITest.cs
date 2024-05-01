@@ -1,5 +1,4 @@
 ﻿using Microsoft.Playwright;
-using OrchardCoreContrib.Testing.UI.Infrastructure;
 using Xunit;
 
 namespace OrchardCoreContrib.Testing.UI;
@@ -18,12 +17,20 @@ public class UITest(BrowserType browserType = BrowserType.Edge, bool headless = 
     /// </summary>
     public IBrowser Browser { get; private set; }
 
+    public UITestOptions Options { get; private set; }
+
     /// <inheritdoc/>
     public async Task InitializeAsync()
     {
+        Options = new UITestOptions
+        {
+            BrowserType = browserType,
+            Headless = headless
+        };
+
         _playwright = await Playwright.CreateAsync();
 
-        Browser = await BrowserFactory.CreateAsync(_playwright, browserType, headless);
+        Browser = await BrowserFactory.CreateAsync(_playwright, Options);
     }
 
     /// <inheritdoc/>

@@ -24,9 +24,15 @@ public class UITest<TStartup>(BrowserType browserType = BrowserType.Edge, bool h
     /// <inheritdoc/>
     public async Task InitializeAsync()
     {
+        Options = new UITestOptions
+        {
+            BrowserType = browserType,
+            Headless = headless
+        };
+
         _playwright = await Playwright.CreateAsync();
 
-        Browser = await BrowserFactory.CreateAsync(_playwright, browserType, headless);
+        Browser = await BrowserFactory.CreateAsync(_playwright, Options);
     }
 
     /// <inheritdoc/>
