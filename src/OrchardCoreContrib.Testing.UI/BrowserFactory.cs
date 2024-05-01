@@ -39,6 +39,10 @@ public static class BrowserFactory
             _ => throw new NotSupportedException()
         };
 
-        return new Browser(new PlaywrightBrowserAccessor(browser)) { Type = testOptions.BrowserType };
+        return new Browser(new PlaywrightBrowserAccessor(browser))
+        {
+            Type = testOptions.BrowserType,
+            TestOptions = testOptions
+        };
     }
 }

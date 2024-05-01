@@ -11,6 +11,11 @@ public interface IBrowser
     public Microsoft.Playwright.IBrowser InnerBrowser { get; }
 
     /// <summary>
+    /// Gets the test options that will be applied;
+    /// </summary>
+    public UITestOptions TestOptions { get; set; }
+
+    /// <summary>
     /// Gets or sets the browser type.
     /// </summary>
     public BrowserType Type { get; set; }

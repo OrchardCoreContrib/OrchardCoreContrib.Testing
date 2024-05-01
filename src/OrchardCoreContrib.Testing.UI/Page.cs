@@ -9,10 +9,13 @@ namespace OrchardCoreContrib.Testing.UI;
 /// Creates an instance of <see cref="Page"/>.
 /// </remarks>
 /// <param name="playwrightPageAccessor">The <see cref="IPlaywrightPageAccessor"/>.</param>
-public class Page(IPlaywrightPageAccessor playwrightPageAccessor) : IPage
+/// <param name="browser">The <see cref="IBrowser"/>.</param>
+public class Page(IPlaywrightPageAccessor playwrightPageAccessor, IBrowser browser) : IPage
 {
     /// <inheritdoc/>
     public Microsoft.Playwright.IPage InnerPage => playwrightPageAccessor.PlaywrightPage;
+
+    IBrowser IPage.Browser => browser;
 
     /// <inheritdoc/>
     public string Title { get; set; }
@@ -33,7 +36,7 @@ public class Page(IPlaywrightPageAccessor playwrightPageAccessor) : IPage
     public IElement FindElement(string selector)
     {
         var locator = InnerPage.Locator(selector);
-        var element = new Element(locator)
+        var element = new Element(locator, this)
         {
             InnerText = locator.InnerTextAsync().GetAwaiter().GetResult(),
             InnerHtml = locator.InnerHTMLAsync().GetAwaiter().GetResult(),

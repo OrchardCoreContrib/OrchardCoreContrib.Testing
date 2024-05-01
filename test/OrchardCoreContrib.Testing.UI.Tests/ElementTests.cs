@@ -2,11 +2,22 @@
 
 public class ElementTests
 {
+    private readonly Page _page;
+
+    public ElementTests()
+    {
+        var browser = new Browser(new PlaywrightBrowserAccessor(Mock.Of<Microsoft.Playwright.IBrowser>()))
+        {
+            TestOptions = new UITestOptions()
+        };
+        _page = new Page(new PlaywrightPageAccessor(Mock.Of<Microsoft.Playwright.IPage>()), browser);
+    }
+
     [Fact]
     public void GetElementInformation()
     {
         // Act
-        var element = new Element(Mock.Of<ILocator>())
+        var element = new Element(Mock.Of<ILocator>(), _page)
         {
             InnerHtml = "<h1>Orchard Core Contrib</h1>",
             InnerText = "Orchard Core Contrib",
@@ -26,7 +37,7 @@ public class ElementTests
     {
         // Arrange
         var locatorMock = new Mock<ILocator>();
-        var element = new Element(locatorMock.Object);
+        var element = new Element(locatorMock.Object, _page);
 
         // Act
         await element.ClickAsync();
@@ -40,13 +51,13 @@ public class ElementTests
     {
         // Arrange
         var locatorMock = new Mock<ILocator>();
-        locatorMock.Setup(l => l.FillAsync(It.IsAny<string>(), null))
+        locatorMock.Setup(l => l.PressSequentiallyAsync(It.IsAny<string>(), null))
             .Callback(() =>
             {
                 locatorMock.Setup(l => l.InnerTextAsync(null))
                     .ReturnsAsync("Orchard Core Contrib");
             });
-        var element = new Element(locatorMock.Object);
+        var element = new Element(locatorMock.Object, _page);
 
         // Act
         await element.TypeAsync("Orchard Core Contrib");

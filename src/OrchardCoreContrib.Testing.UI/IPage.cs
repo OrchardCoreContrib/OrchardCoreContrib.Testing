@@ -10,6 +10,8 @@ public interface IPage
     /// </summary>
     public Microsoft.Playwright.IPage InnerPage { get; }
 
+    internal IBrowser Browser { get; }
+
     /// <summary>
     /// Gets or sets the page title.
     /// </summary>

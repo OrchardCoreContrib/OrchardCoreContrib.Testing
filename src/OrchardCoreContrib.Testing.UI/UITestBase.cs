@@ -1,18 +1,34 @@
-﻿using OrchardCoreContrib.Testing.UI.Infrastructure;
+﻿using Microsoft.Playwright;
 
 namespace OrchardCoreContrib.Testing.UI;
 
-/// <summary>
-/// Represents a base class for UI testing.
-/// </summary>
-/// <typeparam name="TStartup">The startup class that will be used as entry point.</typeparam>
-/// <param name="fixture">The <see cref="WebApplicationFactoryFixture{TStartup}"/>.</param>
-public abstract class UITestBase<TStartup>(WebApplicationFactoryFixture<TStartup> fixture) where TStartup : class
+public abstract class UITestBase(UITestOptions testOptions) : IUITest
 {
-    /// <summary>
-    /// Gets the base URL used for the tested website.
-    /// </summary>
-    public string BaseUrl => fixture.ServerAddress;
+    private IPlaywright _playwright;
 
-    public UITestOptions Options { get; protected set; }
+    /// <summary>
+    /// Gets or sets the browser instance to be used during the test.
+    /// </summary>
+    public IBrowser Browser { get; set; }
+
+    /// <summary>
+    /// Gets the options used during the test.
+    /// </summary>
+    public UITestOptions Options => testOptions;
+
+    /// <inheritdoc/>
+    public virtual async Task InitializeAsync()
+    {
+        _playwright = await Playwright.CreateAsync();
+
+        Browser = await BrowserFactory.CreateAsync(_playwright, Options);
+    }
+
+    /// <inheritdoc/>
+    public virtual async Task DisposeAsync()
+    {
+        _playwright.Dispose();
+
+        await Task.CompletedTask;
+    }
 }

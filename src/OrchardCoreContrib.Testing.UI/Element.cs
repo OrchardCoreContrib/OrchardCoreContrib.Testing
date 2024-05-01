@@ -7,8 +7,18 @@ namespace OrchardCoreContrib.Testing.UI;
 /// </summary>
 /// <remarks>The <see cref="Element"/>.</remarks>
 /// <param name="locator">The <see cref="ILocator"/>.</param>
-public class Element(ILocator locator) : IElement
+/// <param name="IPage">The <see cref="page"/>.</param>
+public class Element(ILocator locator, IPage page) : IElement
 {
+    private readonly LocatorClickOptions _locatorClickOptions = page.Browser.TestOptions.Delay == 0
+        ? null
+        : new() { Delay = page.Browser.TestOptions.Delay };
+    private readonly LocatorPressSequentiallyOptions _locatorPressSequentiallyOptions = page.Browser.TestOptions.Delay == 0
+        ? null
+        : new() { Delay = page.Browser.TestOptions.Delay };
+
+    IPage IElement.Page => page;
+
     /// <inheritdoc/>
     public string InnerText { get; set; }
 
@@ -22,12 +32,12 @@ public class Element(ILocator locator) : IElement
     public bool Visible { get; set; }
 
     /// <inheritdoc/>
-    public async Task ClickAsync() => await locator.ClickAsync();
+    public async Task ClickAsync() => await locator.ClickAsync(_locatorClickOptions);
 
     /// <inheritdoc/>
     public async Task TypeAsync(string text)
     {
-        await locator.FillAsync(text);
+        await locator.PressSequentiallyAsync(text, _locatorPressSequentiallyOptions);
 
         InnerText = await locator.InnerTextAsync();
         InnerHtml = await locator.InnerHTMLAsync();

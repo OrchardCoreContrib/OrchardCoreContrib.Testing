@@ -23,13 +23,16 @@ public class Browser(IPlaywrightBrowserAccessor playwrightBrowserAccessor) : IBr
     public string Version { get; set; } = playwrightBrowserAccessor.PlaywrightBrowser.Version;
 
     /// <inheritdoc/>
+    public UITestOptions TestOptions { get; set; }
+
+    /// <inheritdoc/>
     public async Task<IPage> OpenPageAsync(string url)
     {
         var playwrightPage = await InnerBrowser.NewPageAsync();
 
         await playwrightPage.GotoAsync(url);
 
-        var page = new Page(new PlaywrightPageAccessor(playwrightPage))
+        var page = new Page(new PlaywrightPageAccessor(playwrightPage), this)
         {
             Title = await playwrightPage.TitleAsync(),
             Content = await playwrightPage.ContentAsync()
