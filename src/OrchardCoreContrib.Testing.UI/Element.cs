@@ -10,20 +10,26 @@ namespace OrchardCoreContrib.Testing.UI;
 public class Element(ILocator locator) : IElement
 {
     /// <inheritdoc/>
-    public string InnerText => locator.InnerTextAsync().GetAwaiter().GetResult();
+    public string InnerText { get; set; }
 
     /// <inheritdoc/>
-    public string InnerHtml => locator.InnerHTMLAsync().GetAwaiter().GetResult();
+    public string InnerHtml { get; set; }
 
     /// <inheritdoc/>
-    public bool Enabled => locator.IsEnabledAsync().GetAwaiter().GetResult();
+    public bool Enabled { get; set; }
 
     /// <inheritdoc/>
-    public bool Visible => locator.IsVisibleAsync().GetAwaiter().GetResult();
+    public bool Visible { get; set; }
 
     /// <inheritdoc/>
     public async Task ClickAsync() => await locator.ClickAsync();
 
     /// <inheritdoc/>
-    public async Task TypeAsync(string text) => await locator.FillAsync(text);
+    public async Task TypeAsync(string text)
+    {
+        await locator.FillAsync(text);
+
+        InnerText = await locator.InnerTextAsync();
+        InnerHtml = await locator.InnerHTMLAsync();
+    }
 }

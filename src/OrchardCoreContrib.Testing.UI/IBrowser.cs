@@ -11,19 +11,14 @@ public interface IBrowser
     public Microsoft.Playwright.IBrowser InnerBrowser { get; }
 
     /// <summary>
-    /// Gets whether the browser runs on headless mode or not.
+    /// Gets or sets the browser type.
     /// </summary>
-    public bool Headless { get; }
+    public BrowserType Type { get; set; }
 
     /// <summary>
-    /// Gets the browser type.
+    /// Gets or sets the browser version.
     /// </summary>
-    public BrowserType Type { get; }
-
-    /// <summary>
-    /// Gets the browser version.
-    /// </summary>
-    public string Version { get; }
+    public string Version { get; set; }
 
     /// <summary>
     /// Opens a page with a given URL

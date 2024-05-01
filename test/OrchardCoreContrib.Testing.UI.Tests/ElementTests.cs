@@ -5,22 +5,14 @@ public class ElementTests
     [Fact]
     public void GetElementInformation()
     {
-        // Arrange
-        var locatorMock = new Mock<ILocator>();
-        locatorMock.Setup(l => l.InnerHTMLAsync(null))
-            .ReturnsAsync("<h1>Orchard Core Contrib</h1>");
-
-        locatorMock.Setup(l => l.InnerTextAsync(null))
-            .ReturnsAsync("Orchard Core Contrib");
-
-        locatorMock.Setup(l => l.IsDisabledAsync(null))
-            .ReturnsAsync(false);
-
-        locatorMock.Setup(l => l.IsVisibleAsync(null))
-            .ReturnsAsync(true);
-
         // Act
-        var element = new Element(locatorMock.Object);
+        var element = new Element(Mock.Of<ILocator>())
+        {
+            InnerHtml = "<h1>Orchard Core Contrib</h1>",
+            InnerText = "Orchard Core Contrib",
+            Enabled = false,
+            Visible = true
+        };
 
         // Assert
         Assert.Equal("<h1>Orchard Core Contrib</h1>", element.InnerHtml);

@@ -23,7 +23,7 @@ public class UITestOfTTests : UITest<UITestOfTTests.SimpleStartup>
     [Fact]
     public async Task NavigateToHomePage()
     {
-        // Arrange & Act
+        // Act
         var page = await Browser.OpenPageAsync(BaseUrl + "foo");
 
         // Assert

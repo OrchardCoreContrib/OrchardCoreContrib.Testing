@@ -8,7 +8,7 @@ public interface IElement
     /// <summary>
     /// Gets the inner text of the element.
     /// </summary>
-    public string InnerText { get; }
+    public string InnerText { get; set; }
 
     /// <summary>
     /// Gets the inner HTML of the element.
@@ -18,12 +18,12 @@ public interface IElement
     /// <summary>
     /// Gets whether the element is enabled.
     /// </summary>
-    public bool Enabled { get; }
+    public bool Enabled { get; set; }
 
     /// <summary>
     /// Gets whether the element is visible.
     /// </summary>
-    public bool Visible { get; }
+    public bool Visible { get; set; }
 
     /// <summary>
     /// Writes a given text into an element.
