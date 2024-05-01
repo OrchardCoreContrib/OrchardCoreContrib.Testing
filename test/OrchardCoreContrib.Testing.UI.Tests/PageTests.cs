@@ -2,6 +2,8 @@ namespace OrchardCoreContrib.Testing.UI.Tests;
 
 public class PageTests
 {
+    private readonly IBrowser _browser = Mock.Of<IBrowser>();
+
     [Fact]
     public void ShouldCreatePage()
     {
@@ -9,7 +11,7 @@ public class PageTests
         var playwrightPageAccessor = new PlaywrightPageAccessor(Mock.Of<Microsoft.Playwright.IPage>());
 
         // Act
-        var page = new Page(playwrightPageAccessor);
+        var page = new Page(_browser, playwrightPageAccessor);
 
         // Assert
         Assert.NotNull(page);
@@ -31,7 +33,7 @@ public class PageTests
         var playwrightPageAccessor = new PlaywrightPageAccessor(pageMock.Object);
 
         // Act
-        var page = new Page(playwrightPageAccessor);
+        var page = new Page(_browser, playwrightPageAccessor);
         await page.GoToAsync("www.occ.com");
 
         // Assert
@@ -50,7 +52,7 @@ public class PageTests
 
         var playwrightPageAccessor = new PlaywrightPageAccessor(pageMock.Object);
 
-        var page = new Page(playwrightPageAccessor);
+        var page = new Page(_browser, playwrightPageAccessor);
 
         // Act
         var result = page.FindElement("selector");

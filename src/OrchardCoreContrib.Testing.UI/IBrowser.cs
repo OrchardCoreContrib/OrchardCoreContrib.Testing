@@ -20,6 +20,8 @@ public interface IBrowser
     /// </summary>
     public BrowserType Type { get; }
 
+    public int Delay { get; }
+
     /// <summary>
     /// Gets the browser version.
     /// </summary>

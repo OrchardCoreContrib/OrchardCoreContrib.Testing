@@ -9,7 +9,7 @@ namespace OrchardCoreContrib.Testing.UI;
 /// </summary>
 /// <param name="browserType">The browser type that will be used during the test. Defaults to <see cref="BrowserType.Edge"/>.</param>
 /// <param name="headless">Whether the browser runs in headless mode or not. Defaults to <c>true</c>.</param>
-public class UITest(BrowserType browserType = BrowserType.Edge, bool headless = true) : IAsyncLifetime
+public class UITest(BrowserType browserType = BrowserType.Edge, bool headless = true, int delay = 0) : IAsyncLifetime
 {
     private IPlaywright _playwright;
 
@@ -23,7 +23,7 @@ public class UITest(BrowserType browserType = BrowserType.Edge, bool headless = 
     {
         _playwright = await Playwright.CreateAsync();
 
-        Browser = await BrowserFactory.CreateAsync(_playwright, browserType, headless);
+        Browser = await BrowserFactory.CreateAsync(_playwright, browserType, headless, delay);
     }
 
     /// <inheritdoc/>

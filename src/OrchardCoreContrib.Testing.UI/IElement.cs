@@ -5,6 +5,8 @@
 /// </summary>
 public interface IElement
 {
+    internal IPage Page { get; }
+
     /// <summary>
     /// Gets the inner text of the element.
     /// </summary>

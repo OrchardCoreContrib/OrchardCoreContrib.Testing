@@ -17,7 +17,7 @@ public class BrowserFactoryTests
         var playwright = await Playwright.CreateAsync();
 
         // Act
-        var browser = await BrowserFactory.CreateAsync(playwright, browserType, headless);
+        var browser = await BrowserFactory.CreateAsync(playwright, browserType, headless, delay: 0);
 
         // Assert
         Assert.NotNull(browser);
@@ -35,7 +35,7 @@ public class BrowserFactoryTests
         // Act & Assert
         await Assert.ThrowsAsync<NotSupportedException>(async () =>
         {
-            await BrowserFactory.CreateAsync(playwright, BrowserType.NotSet, headless: true);
+            await BrowserFactory.CreateAsync(playwright, BrowserType.NotSet, headless: true, delay: 0);
         });
     }
 }

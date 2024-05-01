@@ -22,7 +22,7 @@ public class BrowserTests
         var playwrightBrowserAccessor = new PlaywrightBrowserAccessor(_browserMock.Object);
 
         // Act
-        var browser = new Browser(playwrightBrowserAccessor, BrowserType.Edge, headless: true);
+        var browser = new Browser(playwrightBrowserAccessor, BrowserType.Edge, headless: true, delay: 0);
 
         // Assert
         Assert.NotNull(browser);
@@ -37,7 +37,7 @@ public class BrowserTests
     {
         // Arrange
         var playwrightBrowserAccessor = new PlaywrightBrowserAccessor(_browserMock.Object);
-        var browser = new Browser(playwrightBrowserAccessor, BrowserType.Edge, headless: true);
+        var browser = new Browser(playwrightBrowserAccessor, BrowserType.Edge, headless: true, delay: 0);
 
         // Act
         var page = await browser.OpenPageAsync("https://www.orchardcore.net");

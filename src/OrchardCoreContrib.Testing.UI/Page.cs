@@ -9,8 +9,15 @@ namespace OrchardCoreContrib.Testing.UI;
 /// Creates an instance of <see cref="Page"/>.
 /// </remarks>
 /// <param name="playwrightPageAccessor">The <see cref="IPlaywrightPageAccessor"/>.</param>
-public class Page(IPlaywrightPageAccessor playwrightPageAccessor) : IPage
+public class Page(IBrowser browser, IPlaywrightPageAccessor playwrightPageAccessor) : IPage
 {
+    private readonly PageClickOptions _pageClickOptions = browser.Delay == 0
+        ? null
+        : new() { Delay = browser.Delay };
+
+    /// <inheritdoc/>
+    IBrowser IPage.Browser => browser;
+
     /// <inheritdoc/>
     public Microsoft.Playwright.IPage InnerPage => playwrightPageAccessor.PlaywrightPage;
 
@@ -28,11 +35,11 @@ public class Page(IPlaywrightPageAccessor playwrightPageAccessor) : IPage
     {
         var locator = InnerPage.Locator(selector);
 
-        return new Element(locator);
+        return new Element(this, locator);
     }
 
     /// <inheritdoc/>
-    public async Task ClickAsync(string selector) => await FindElement(selector).ClickAsync();
+    public async Task ClickAsync(string selector) => await InnerPage.ClickAsync(selector, _pageClickOptions);
 
     /// <inheritdoc/>
     public async Task ScreenShotAsync(string path, bool fullPage = false)

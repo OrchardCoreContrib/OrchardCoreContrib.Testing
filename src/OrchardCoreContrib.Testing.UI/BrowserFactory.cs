@@ -20,7 +20,7 @@ public static class BrowserFactory
     /// <param name="headless">Whether the browser runs in headless mode or not.</param>
     /// <returns>An instance of <see cref="IBrowser"/>.</returns>
     /// <exception cref="NotSupportedException"></exception>
-    public static async Task<IBrowser> CreateAsync(IPlaywright playwright, BrowserType browserType, bool headless)
+    public static async Task<IBrowser> CreateAsync(IPlaywright playwright, BrowserType browserType, bool headless, int delay)
     {
         var browser = browserType switch
         {
@@ -30,6 +30,6 @@ public static class BrowserFactory
             _ => throw new NotSupportedException()
         };
 
-        return new Browser(new PlaywrightBrowserAccessor(browser), browserType, headless);
+        return new Browser(new PlaywrightBrowserAccessor(browser), browserType, headless, delay);
     }
 }

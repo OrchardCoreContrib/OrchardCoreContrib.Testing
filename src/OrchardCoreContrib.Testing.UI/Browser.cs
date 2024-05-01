@@ -11,7 +11,7 @@ namespace OrchardCoreContrib.Testing.UI;
 /// <param name="playwrightBrowserAccessor">The <see cref="IPlaywrightBrowserAccessor"/>.</param>
 /// <param name="type">The <see cref="BrowserType"/>.</param>
 /// <param name="headless">Whether to run browser in headless mode.</param>
-public class Browser(IPlaywrightBrowserAccessor playwrightBrowserAccessor, BrowserType type, bool headless) : IBrowser
+public class Browser(IPlaywrightBrowserAccessor playwrightBrowserAccessor, BrowserType type, bool headless, int delay) : IBrowser
 {
     /// <inheritdoc/>
     public PlaywrightBrowser InnerBrowser => playwrightBrowserAccessor.PlaywrightBrowser;
@@ -23,6 +23,9 @@ public class Browser(IPlaywrightBrowserAccessor playwrightBrowserAccessor, Brows
     public BrowserType Type => type;
 
     /// <inheritdoc/>
+    public int Delay => delay;
+
+    /// <inheritdoc/>
     public string Version => InnerBrowser.Version;
 
     /// <inheritdoc/>
@@ -32,6 +35,6 @@ public class Browser(IPlaywrightBrowserAccessor playwrightBrowserAccessor, Brows
 
         await page.GotoAsync(url);
 
-        return new Page(new PlaywrightPageAccessor(page));
+        return new Page(this, new PlaywrightPageAccessor(page));
     }
 }

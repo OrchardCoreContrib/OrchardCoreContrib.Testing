@@ -2,6 +2,17 @@
 
 public class ElementTests
 {
+    private readonly Mock<Page> _pageMock;
+
+    public ElementTests()
+    {
+        var playwrightPage = Mock.Of<Microsoft.Playwright.IPage>();
+        var playwrightPageAccessorMock = new Mock<PlaywrightPageAccessor>(playwrightPage);
+        _pageMock = new(Mock.Of<IBrowser>(), playwrightPageAccessorMock.Object);
+        //_pageMock.Setup(p => p.InnerPage)
+        //    .Returns(playwrightPage);
+    }
+
     [Fact]
     public void GetElementInformation()
     {
@@ -20,7 +31,7 @@ public class ElementTests
             .ReturnsAsync(true);
 
         // Act
-        var element = new Element(locatorMock.Object);
+        var element = new Element(_pageMock.Object, locatorMock.Object);
 
         // Assert
         Assert.Equal("<h1>Orchard Core Contrib</h1>", element.InnerHtml);
@@ -34,7 +45,7 @@ public class ElementTests
     {
         // Arrange
         var locatorMock = new Mock<ILocator>();
-        var element = new Element(locatorMock.Object);
+        var element = new Element(_pageMock.Object, locatorMock.Object);
 
         // Act
         await element.ClickAsync();
@@ -48,13 +59,13 @@ public class ElementTests
     {
         // Arrange
         var locatorMock = new Mock<ILocator>();
-        locatorMock.Setup(l => l.FillAsync(It.IsAny<string>(), null))
+        locatorMock.Setup(l => l.PressSequentiallyAsync(It.IsAny<string>(), null))
             .Callback(() =>
             {
                 locatorMock.Setup(l => l.InnerTextAsync(null))
                     .ReturnsAsync("Orchard Core Contrib");
             });
-        var element = new Element(locatorMock.Object);
+        var element = new Element(_pageMock.Object, locatorMock.Object);
 
         // Act
         await element.TypeAsync("Orchard Core Contrib");
