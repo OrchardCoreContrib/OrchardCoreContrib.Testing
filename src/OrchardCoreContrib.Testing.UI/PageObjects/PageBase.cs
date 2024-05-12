@@ -3,13 +3,12 @@
 /// <summary>
 /// Represents a base class for page objects.
 /// </summary>
-/// <param name="page"></param>
-public abstract class PageBase(IPage page)
+public abstract class PageBase
 {
     /// <summary>
     /// Gets the underlying <see cref="IPage"/> object.
     /// </summary>
-    public IPage Page => page;
+    public IPage Page { get; internal set; }
 
     /// <summary>
     /// Gets the slug of the page.

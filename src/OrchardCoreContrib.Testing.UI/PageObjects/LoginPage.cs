@@ -6,8 +6,7 @@ namespace OrchardCoreContrib.Testing.UI.PageObjects;
 /// <summary>
 /// Represents a login page.
 /// </summary>
-/// <param name="page">The <see cref="IPage"/>.</param>
-public class LoginPage(IPage page) : PageBase(page)
+public class LoginPage : PageBase
 {
     /// <inheritdoc/>
     public override string Slug => "Login";

@@ -22,7 +22,7 @@ public class PageFactoryTests
         Assert.Equal("/my-page", page.Slug);
     }
 
-    public class MyPage(IPage page) : PageBase(page)
+    public class MyPage : PageBase
     {
         public override string Slug => "/my-page";
     }

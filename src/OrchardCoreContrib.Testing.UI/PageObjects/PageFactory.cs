@@ -27,8 +27,9 @@ public class PageFactory
     /// <typeparam name="TPage">The page type.</typeparam>
     public static async Task<TPage> CreateAsync<TPage>() where TPage : PageBase
     {
-        var page = (TPage)Activator.CreateInstance(typeof(TPage), _page);
+        var page = Activator.CreateInstance<TPage>();
 
+        page.Page = _page;
         page.BaseUrl = _baseUrl;
 
         return (TPage)await page.GoToAsync();

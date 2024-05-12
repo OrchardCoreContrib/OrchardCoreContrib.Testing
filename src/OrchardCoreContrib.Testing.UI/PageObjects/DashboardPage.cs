@@ -3,8 +3,7 @@
 /// <summary>
 /// Represents the dashboard page.
 /// </summary>
-/// <param name="page">The <see cref="IPage"/>.</param>
-public class DashboardPage(IPage page) : AdminPage(page)
+public class DashboardPage : AdminPage
 {
     /// <inheritdoc/>
     public override string Slug => "Admin/";

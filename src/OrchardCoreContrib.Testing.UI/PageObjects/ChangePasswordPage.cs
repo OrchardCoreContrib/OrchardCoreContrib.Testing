@@ -5,8 +5,7 @@ namespace OrchardCoreContrib.Testing.UI.PageObjects;
 /// <summary>
 /// Represents a change password page.
 /// </summary>
-/// <param name="page">The <see cref="IPage"/>.</param>
-public class ChangePasswordPage(IPage page) : AdminPage(page)
+public class ChangePasswordPage : AdminPage
 {
     /// <inheritdoc/>
     public override string Slug => "ChangePassword";

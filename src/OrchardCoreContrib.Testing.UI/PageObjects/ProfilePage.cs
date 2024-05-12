@@ -3,8 +3,7 @@
 /// <summary>
 /// Represents the profile page.
 /// </summary>
-/// <param name="page">The <see cref="IPage"/>.</param>
-public class ProfilePage(IPage page) : AdminPage(page)
+public class ProfilePage : AdminPage
 {
     /// <inheritdoc/>
     public override string Slug => "Admin/Users/Edit";

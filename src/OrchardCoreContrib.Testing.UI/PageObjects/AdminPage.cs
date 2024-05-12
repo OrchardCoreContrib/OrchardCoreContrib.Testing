@@ -6,8 +6,7 @@ namespace OrchardCoreContrib.Testing.UI.PageObjects;
 /// <summary>
 /// Represents a base class for admin page objects.
 /// </summary>
-/// <param name="page"></param>
-public abstract class AdminPage(IPage page) : PageBase(page)
+public abstract class AdminPage : PageBase
 {
     /// <inheritdoc/>
     public abstract override string Slug { get; }
@@ -37,7 +36,7 @@ public abstract class AdminPage(IPage page) : PageBase(page)
     /// </summary>
     public async Task LogoutAsync()
     {
-        await page.InnerPage.GetByRole(AriaRole.Link, new() { Name = "admin" }).ClickAsync();
-        await page.InnerPage.GetByRole(AriaRole.Button, new() { Name = "Log off" }).ClickAsync();
+        await Page.InnerPage.GetByRole(AriaRole.Link, new() { Name = "admin" }).ClickAsync();
+        await Page.InnerPage.GetByRole(AriaRole.Button, new() { Name = "Log off" }).ClickAsync();
     }
 }
