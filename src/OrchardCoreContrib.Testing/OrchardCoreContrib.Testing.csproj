@@ -3,6 +3,23 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<VersionPrefix>1.0.0-beta1</VersionPrefix>
+		<Authors>The Orchard Core Contrib Team</Authors>
+		<Company />
+		<Description>Provides an implementation APIs for testing Orchard Core applications.</Description>
+		<PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/OrchardCoreContrib/OrchardCoreContrib.Testing/tree/main/src/OrchardCoreContrib.Testing.UI/README.md</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/OrchardCoreContrib/OrchardCoreContrib.Testing</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageTags>Orchard Core, Orchard Core Contrib, Testing</PackageTags>
+		<PackageReleaseNotes>https://github.com/OrchardCoreContrib/OrchardCoreContrib.Testing/releases</PackageReleaseNotes>
+		<PackageId>OrchardCoreContrib.Testing</PackageId>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Product>Orchard Core Contrib Testing</Product>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Copyright>2019 Orchard Core Contrib</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -10,6 +27,11 @@
 		<PackageReference Include="OrchardCore.Infrastructure.Abstractions" Version="2.2.1" />
 		<PackageReference Include="OrchardCore.Tenants" Version="2.2.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.24" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\images\icon.png" Pack="true" PackagePath="icon.png" />
+		<None Include="README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 </Project>
