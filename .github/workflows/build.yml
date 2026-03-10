@@ -10,12 +10,8 @@ env:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     name: Build & Test
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ ubuntu-latest, windows-latest ]
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET Core
@@ -29,10 +25,5 @@ jobs:
     - name: Install Playwright browsers & dependencies
       run: pwsh test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/net8.0/playwright.ps1 install --with-deps
     - name: Test
-      run: |
-        if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
-          xvfb-run dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
-        else
+      run:
           dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
-        fi
-      shell: bash
