@@ -9,11 +9,11 @@ using System.Net.Http.Json;
 
 namespace OrchardCoreContrib.Testing;
 
-public abstract class SiteContextBase<TSiteStartup> : ISiteContext<TSiteStartup> where TSiteStartup : class
+public abstract class SiteContextBase<TEntryPoint> : ISiteContext<TEntryPoint> where TEntryPoint : class
 {
     static SiteContextBase()
     {
-        Site = new OrchardCoreWebApplicationFactory<TSiteStartup>();
+        Site = new OrchardCoreWebApplicationFactory<TEntryPoint>();
         ShellHost = Site.Services.GetRequiredService<IShellHost>();
         ShellSettingsManager = Site.Services.GetRequiredService<IShellSettingsManager>();
         HttpContextAccessor = Site.Services.GetRequiredService<IHttpContextAccessor>();
@@ -25,7 +25,7 @@ public abstract class SiteContextBase<TSiteStartup> : ISiteContext<TSiteStartup>
         Options = new SiteContextOptions();
     }
 
-    public static OrchardCoreWebApplicationFactory<TSiteStartup> Site { get; }
+    public static OrchardCoreWebApplicationFactory<TEntryPoint> Site { get; }
 
     public static IShellHost ShellHost { get; private set; }
 

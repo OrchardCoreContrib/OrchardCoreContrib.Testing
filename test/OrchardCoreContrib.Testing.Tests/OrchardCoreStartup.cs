@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Modules;
 using OrchardCoreContrib.Testing.Security;
 
-namespace OrchardCoreContrib.Testing;
+namespace OrchardCoreContrib.Testing.Tests;
 
-public class OrchardCoreStartup<TEntryPoint> : StartupBase where TEntryPoint : class
+public class OrchardCoreStartup
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public void ConfigureServices(IServiceCollection services)
     {
         services.AddOrchardCms(builder => builder
             .AddSetupFeatures("OrchardCore.Tenants")
@@ -21,9 +20,8 @@ public class OrchardCoreStartup<TEntryPoint> : StartupBase where TEntryPoint : c
             })
             .Configure(appBuilder => appBuilder.UseAuthorization()));
 
-        services.AddSingleton<IModuleNamesProvider>(new ModuleNamesProvider(typeof(TEntryPoint).Assembly));
+        services.AddSingleton<IModuleNamesProvider>(new ModuleNamesProvider(typeof(Web.Program).Assembly));
     }
 
-    public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
-        => app.UseOrchardCore();
+    public void Configure(IApplicationBuilder app) => app.UseOrchardCore();
 }

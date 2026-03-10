@@ -5,7 +5,7 @@ using OrchardCore.Security.Permissions;
 
 namespace OrchardCoreContrib.Testing.Security;
 
-internal sealed class PermissionContextAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
+public sealed class PermissionContextAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
 {
     private readonly PermissionsContext _permissionsContext;
 

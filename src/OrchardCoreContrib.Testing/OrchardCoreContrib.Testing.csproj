@@ -6,7 +6,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="OrchardCore.Application.Cms.Core.Targets" Version="2.2.1" />
+		<PackageReference Include="OrchardCore.Abstractions" Version="2.2.1" />
+		<PackageReference Include="OrchardCore.Infrastructure.Abstractions" Version="2.2.1" />
+		<PackageReference Include="OrchardCore.Tenants" Version="2.2.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.24" />
 	</ItemGroup>
 

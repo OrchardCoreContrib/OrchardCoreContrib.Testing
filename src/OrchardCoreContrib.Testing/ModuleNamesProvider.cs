@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace OrchardCoreContrib.Testing;
 
-internal sealed class ModuleNamesProvider : IModuleNamesProvider
+public sealed class ModuleNamesProvider : IModuleNamesProvider
 {
     private readonly IEnumerable<string> _moduleNames;
 
