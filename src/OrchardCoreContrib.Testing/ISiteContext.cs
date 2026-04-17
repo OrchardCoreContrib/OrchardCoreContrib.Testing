@@ -16,5 +16,5 @@ public interface ISiteContext : IDisposable
 
     string TenantName { get; }
 
-    Task InitializeAsync();
+    Task InitializeAsync(string tenantName = null);
 }
