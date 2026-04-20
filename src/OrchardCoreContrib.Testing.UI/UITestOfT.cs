@@ -1,4 +1,5 @@
 ﻿using OrchardCoreContrib.Testing.UI.Infrastructure;
+using OrchardCoreContrib.Testing.UI.PageObjects;
 
 namespace OrchardCoreContrib.Testing.UI;
 
@@ -17,4 +18,11 @@ public class UITest<TStartup>(BrowserType browserType = BrowserType.Edge, bool h
         Delay = delay
     }), IUITest where TStartup : class
 {
+    /// <inheritdoc/>
+    public override async Task InitializeAsync()
+    {
+        await base.InitializeAsync();
+
+        await PageFactory.InitializeAsync(Browser, BaseUrl);
+    }
 }
