@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OrchardCoreContrib.Testing.UI/OrchardCoreContrib.Testing.UI.csproj" />
+    <Project Path="src/OrchardCoreContrib.Testing.Web/OrchardCoreContrib.Testing.Web.csproj" />
+    <Project Path="src/OrchardCoreContrib.Testing/OrchardCoreContrib.Testing.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/OrchardCoreContrib.Testing.Tests/OrchardCoreContrib.Testing.Tests.csproj" />
+    <Project Path="test/OrchardCoreContrib.Testing.UI.Tests/OrchardCoreContrib.Testing.UI.Tests.csproj" />
+  </Folder>
+</Solution>
