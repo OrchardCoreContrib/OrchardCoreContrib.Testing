@@ -32,15 +32,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Playwright" Version="1.41.2" />
-		<PackageReference Include="OrchardCoreContrib.Infrastructure.Abstractions" Version="2.3.1" />
-		<PackageReference Include="xunit" Version="2.5.1" />
+		<PackageReference Include="Microsoft.Playwright" Version="1.59.0" />
+		<PackageReference Include="OrchardCoreContrib.Infrastructure.Abstractions" Version="2.6.1" />
+		<PackageReference Include="xunit" Version="2.9.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="build\playwright.ps1" Pack="true" CopyToOutputDirectory="PreserveNewest" />
 		<None Include="..\..\images\icon.png" Pack="true" PackagePath="icon.png" />
-		<None Include="README.md" Pack="true" PackagePath="\"/>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>
