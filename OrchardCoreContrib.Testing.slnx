@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/OrchardCoreContrib.Testing.UI/OrchardCoreContrib.Testing.UI.csproj" />
     <Project Path="src/OrchardCoreContrib.Testing.Web/OrchardCoreContrib.Testing.Web.csproj" />
