@@ -31,9 +31,16 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
+    - name: Resolve Current .NET Version
+      shell: pwsh
+      run: |
+        $dotNetVersion = dotnet --version
+        "DOTNET_VERSION=$dotNetVersion" >> $env:GITHUB_ENV
+
     - name: Install Playwright.NET
       uses: phil-scott-78/setup-playwright-dotnet@v0.1.0-alpha
       with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
         with-deps: true
         browsers: 'all'
 
