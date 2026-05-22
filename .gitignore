@@ -397,3 +397,11 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 src/OrchardCoreContrib.Testing.Web/Localization
+src/OrchardCoreContrib.Testing.UI/Localization
+src/OrchardCoreContrib.Testing.UI/wwwroot
+src/OrchardCoreContrib.Testing/Localization
+src/OrchardCoreContrib.Testing/wwwroot
+test/OrchardCoreContrib.Testing.Tests/Localization
+test/OrchardCoreContrib.Testing.Tests/wwwroot
+test/OrchardCoreContrib.Testing.UI.Tests/Localization
+test/OrchardCoreContrib.Testing.UI.Tests/wwwroot
