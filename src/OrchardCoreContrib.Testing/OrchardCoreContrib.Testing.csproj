@@ -25,6 +25,7 @@
 		<PackageReference Include="OrchardCore.Infrastructure.Abstractions" />
 		<PackageReference Include="OrchardCore.Tenants" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" />
 	</ItemGroup>
 
 	<ItemGroup>
