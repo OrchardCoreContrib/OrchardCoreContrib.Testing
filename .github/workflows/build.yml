@@ -1,29 +1,41 @@
-name: Orchard Core Contrib Testing
+name: Orchard Core Contrib Testing - Build
 
 on:
   pull_request:
     branches: [ main ]
-
-env:
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
-  DOTNET_CLI_TELEMETRY_OPTOUT: true
+    paths-ignore:
+    - 'README.md'
 
 jobs:
-  test:
+  build:
     runs-on: windows-latest
-    name: Build & Test
+    env:
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v6
       with:
-        dotnet-version: 8.0.*
-    - name: Install dependencies
+        submodules: true
+        token: ${{ secrets.OCC_TOKEN }}
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: |
+          8.0.*
+          10.0.*
+
+    - name: Install Dependencies
       run: dotnet restore
+
     - name: Build
-      run: dotnet build -c Release --no-restore
-    - name: Install Playwright browsers & dependencies
-      run: pwsh test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/net8.0/playwright.ps1 install --with-deps
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Install Playwright.NET
+      uses: phil-scott-78/setup-playwright-dotnet@v0.1.0-alpha
+      with:
+        with-deps: true
+        browsers: 'all'
+
     - name: Test
-      run:
-          dotnet test test/OrchardCoreContrib.Testing.UI.Tests -c Release --no-restore --verbosity normal
+      run: dotnet test --configuration Release --no-restore --verbosity normal
