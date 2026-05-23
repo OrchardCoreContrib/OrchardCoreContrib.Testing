@@ -37,6 +37,10 @@ jobs:
         $playwrightScript = Get-ChildItem "test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/*/playwright.ps1" |
           Select-Object -First 1 -ExpandProperty FullName
 
+        if ([string]::IsNullOrWhiteSpace($playwrightScript)) {
+          throw "Unable to find playwright.ps1 in the built UI test output."
+        }
+
         & $playwrightScript install
 
     - name: Test
