@@ -34,14 +34,18 @@ jobs:
     - name: Install Playwright browsers
       shell: pwsh
       run: |
-        $playwrightScript = Get-ChildItem "test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/*/playwright.ps1" |
-          Select-Object -First 1 -ExpandProperty FullName
+        $playwrightScripts = Get-ChildItem "test/OrchardCoreContrib.Testing.UI.Tests/bin/Release/*/playwright.ps1" |
+          Select-Object -ExpandProperty FullName
 
-        if ([string]::IsNullOrWhiteSpace($playwrightScript)) {
-          throw "Unable to find playwright.ps1 in the built UI test output."
+        if ($null -eq $playwrightScripts -or $playwrightScripts.Count -eq 0) {
+          throw "Unable to find any playwright.ps1 script in the built UI test output."
         }
 
-        & $playwrightScript install
+        foreach ($playwrightScript in $playwrightScripts) {
+          & $playwrightScript install
+        }
 
     - name: Test
-      run: dotnet test --configuration Release --no-restore --verbosity normal
+      run: |
+        dotnet test test/OrchardCoreContrib.Testing.Tests/OrchardCoreContrib.Testing.Tests.csproj --configuration Release --no-build --verbosity normal
+        dotnet test test/OrchardCoreContrib.Testing.UI.Tests/OrchardCoreContrib.Testing.UI.Tests.csproj --configuration Release --no-build --verbosity normal
