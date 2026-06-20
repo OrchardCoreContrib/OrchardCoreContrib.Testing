@@ -17,8 +17,6 @@
 	<ItemGroup>
 		<PackageReference Include="OrchardCore.Logging.NLog" />
 		<PackageReference Include="OrchardCore.Application.Cms.Targets" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" />
-		<PackageReference Include="Microsoft.Extensions.Http.Resilience" />
 	</ItemGroup>
 
 </Project>
