@@ -10,7 +10,7 @@
 		<PackageVersion Include="OrchardCore.Tenants" Version="$(OrchardCoreVersion)" />
 		<PackageVersion Include="OrchardCore.Logging.NLog" Version="$(OrchardCoreVersion)" />
 		<PackageVersion Include="OrchardCore.Application.Cms.Targets" Version="$(OrchardCoreVersion)" />
-		<PackageVersion Include="Microsoft.Playwright" Version="1.59.0" />
+		<PackageVersion Include="Microsoft.Playwright" Version="1.60.0" />
 		<PackageVersion Include="OrchardCoreContrib.Infrastructure.Abstractions" Version="2.6.1" />
 		<PackageVersion Include="Moq" Version="4.20.72" />
 	</ItemGroup>
