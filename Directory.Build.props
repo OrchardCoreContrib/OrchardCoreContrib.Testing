@@ -11,5 +11,8 @@
 		<NoWarn>NU1507</NoWarn>
 
 		<OrchardCoreVersion>3.0.1</OrchardCoreVersion>
+
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)OrchardCoreContrib.Testing.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 </Project>
