@@ -21,6 +21,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<InternalsVisibleTo Key="0024000004800000940000000602000000240000525341310004000001000100d55741af1ace56fdeef517b92910c651b1316c7dfd0e644f2a8f80ceadad9ee09ca26959e4335dc7dd9df3d31c334a3438fe11bc1d94c03447f8db36e129fd798b390d8d2d2afbb3a3cb9af854076981b389263f43910cb59bb0259c85e68d6a9a03b4383f7832c24910fea2b30aa67bb9696dc5a38b724778ea5d1966b12bd2" Include="OrchardCoreContrib.Testing.Tests" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="OrchardCore.Abstractions" />
 		<PackageReference Include="OrchardCore.Infrastructure.Abstractions" />
 		<PackageReference Include="OrchardCore.Tenants" />
