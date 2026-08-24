@@ -1,6 +1,6 @@
 ﻿<Project>
 	<ItemGroup>
-		<PackageVersion Include="AngleSharp" Version="1.7.1" />
+		<PackageVersion Include="AngleSharp" Version="1.7.2" />
 		<PackageVersion Include="coverlet.collector" Version="10.0.0" />
 		<PackageVersion Include="OrchardCore.Abstractions" Version="$(OrchardCoreVersion)" />
 		<PackageVersion Include="OrchardCore.Infrastructure.Abstractions" Version="$(OrchardCoreVersion)" />
